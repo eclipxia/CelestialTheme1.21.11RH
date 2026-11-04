@@ -112,9 +112,11 @@ public class CelestialHudHandler extends HudHandlerBase {
 		this.place("PlayerView", bottomLeft, center - 142, h);
 		//armor on the right half above the hunger bar
 		this.place("CelestialArmor", bottomLeft, center + 11, h - 40);
-		//durability and speed on the left above minecraft's own armor bar, which sits over the health bar
-		this.place("CelestialDurability", bottomLeft, center - 91, h - 62);
-		this.place("Speed", bottomLeft, center - 91, h - 62 - STACK);
+		//durability sits flush on top of minecraft's own armor bar (its top edge is 49 gui units above the bottom),
+		//speed is stacked above it using the real height, so the offhand line doesn't overlap it
+		final double durabilityY = h - 49;
+		this.place("CelestialDurability", bottomLeft, center - 91, durabilityY);
+		this.place("Speed", bottomLeft, center - 91, durabilityY - this.height("CelestialDurability", STACK));
 		//the Celestial versions show a % sign in percent mode, so they replace the built in ones
 		this.disable("Durability");
 		this.disable("Armor");
@@ -142,6 +144,19 @@ public class CelestialHudHandler extends HudHandlerBase {
 		} catch(ReflectiveOperationException | RuntimeException e) {
 			LOGGER.warn("[Celestial] could not set alignment of {}", element.getName(), e);
 		}
+	}
+
+	private double height(String name, double fallback) {
+		for(HudElement element : RusherHackAPI.getHudManager().getFeatures()) {
+			if(element.getName().equalsIgnoreCase(name)) {
+				try {
+					return element.getHeight();
+				} catch(RuntimeException e) {
+					return fallback;
+				}
+			}
+		}
+		return fallback;
 	}
 
 	private void disable(String name) {
