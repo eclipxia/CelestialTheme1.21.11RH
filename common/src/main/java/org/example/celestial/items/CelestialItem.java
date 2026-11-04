@@ -1,8 +1,8 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
-import org.example.astera.AsteraPlugin;
-import org.example.astera.AsteraTheme;
+import org.example.celestial.CelestialPanel;
+import org.example.celestial.CelestialPlugin;
+import org.example.celestial.CelestialTheme;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.RenderContext;
@@ -17,29 +17,29 @@ import java.util.function.BooleanSupplier;
 /**
  * One row in a panel. Children (settings) show below the row when open.
  */
-public abstract class AsteraItem extends ElementBase implements IPanelItem {
+public abstract class CelestialItem extends ElementBase implements IPanelItem {
 
-	protected static final double ROW = AsteraPanel.ROW_HEIGHT;
+	protected static final double ROW = CelestialPanel.ROW_HEIGHT;
 
-	protected final AsteraPanel panel;
-	protected final AsteraItem parent;
+	protected final CelestialPanel panel;
+	protected final CelestialItem parent;
 	protected final int depth;
-	protected final List<AsteraItem> children = new ArrayList<>();
+	protected final List<CelestialItem> children = new ArrayList<>();
 	protected boolean open = false;
 	private BooleanSupplier visibility = () -> true;
 
-	protected AsteraItem(AsteraPanel panel, AsteraItem parent) {
+	protected CelestialItem(CelestialPanel panel, CelestialItem parent) {
 		this.panel = panel;
 		this.parent = parent;
 		this.depth = parent == null ? 0 : parent.depth + 1;
 	}
 
-	public AsteraItem setVisibility(BooleanSupplier visibility) {
+	public CelestialItem setVisibility(BooleanSupplier visibility) {
 		this.visibility = visibility;
 		return this;
 	}
 
-	public void addChild(AsteraItem item) {
+	public void addChild(CelestialItem item) {
 		if(item != null) {
 			this.children.add(item);
 		}
@@ -51,7 +51,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 	}
 
 	protected boolean hasVisibleChildren() {
-		for(AsteraItem child : this.children) {
+		for(CelestialItem child : this.children) {
 			if(child.isVisible()) return true;
 		}
 		return false;
@@ -63,12 +63,12 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 
 	@Override
 	public double getX() {
-		return this.panel.getX() + AsteraPanel.OUTLINE;
+		return this.panel.getX() + CelestialPanel.OUTLINE;
 	}
 
 	@Override
 	public double getWidth() {
-		return this.panel.getWidth() - AsteraPanel.OUTLINE * 2;
+		return this.panel.getWidth() - CelestialPanel.OUTLINE * 2;
 	}
 
 	// height of this item's own row, children not included
@@ -87,7 +87,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 			return this.rowHeight();
 		}
 		double height = this.rowHeight();
-		for(AsteraItem child : this.children) {
+		for(CelestialItem child : this.children) {
 			if(child.isVisible()) height += child.getHeight(true);
 		}
 		return height;
@@ -109,7 +109,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 			}
 
 			double childY = this.getY() + this.rowHeight();
-			for(AsteraItem child : this.children) {
+			for(CelestialItem child : this.children) {
 				if(!child.isVisible()) continue;
 				child.setY(childY);
 				child.render(context, mouseX, mouseY);
@@ -120,8 +120,8 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 
 	protected abstract void renderRow(RenderContext context, double mouseX, double mouseY);
 
-	protected AsteraTheme theme() {
-		return AsteraPlugin.THEME;
+	protected CelestialTheme theme() {
+		return CelestialPlugin.THEME;
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 		return this.panel.getFontRenderer();
 	}
 
-	// row fill inset by 1 unit, like Astera's enabled rows
+	// row fill inset by 1 unit, like Celestial's enabled rows
 	protected void fillRow(int color) {
 		this.getRenderer().drawRectangle(this.getX() + 1, this.getY() + 1, this.getWidth() - 2, this.rowHeight() - 1, color);
 	}
@@ -200,7 +200,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 			return this.onClick(mouseX, mouseY, button);
 		}
 		if(this.open) {
-			for(AsteraItem child : this.children) {
+			for(CelestialItem child : this.children) {
 				if(child.isVisible() && child.mouseClicked(mouseX, mouseY, button)) {
 					return true;
 				}
@@ -220,7 +220,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 	@Override
 	public void mouseReleased(double mouseX, double mouseY, int button) {
 		this.onRelease(mouseX, mouseY, button);
-		for(AsteraItem child : this.children) {
+		for(CelestialItem child : this.children) {
 			child.mouseReleased(mouseX, mouseY, button);
 		}
 	}
@@ -234,7 +234,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 			return true;
 		}
 		if(this.open) {
-			for(AsteraItem child : this.children) {
+			for(CelestialItem child : this.children) {
 				if(child.isVisible() && child.charTyped(character)) return true;
 			}
 		}
@@ -251,7 +251,7 @@ public abstract class AsteraItem extends ElementBase implements IPanelItem {
 			return true;
 		}
 		if(this.open) {
-			for(AsteraItem child : this.children) {
+			for(CelestialItem child : this.children) {
 				if(child.isVisible() && child.keyTyped(key, scanCode, modifiers)) return true;
 			}
 		}

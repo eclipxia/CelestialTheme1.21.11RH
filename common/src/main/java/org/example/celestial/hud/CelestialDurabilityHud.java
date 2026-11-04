@@ -1,4 +1,4 @@
-package org.example.astera.hud;
+package org.example.celestial.hud;
 
 import net.minecraft.world.item.ItemStack;
 import org.rusherhack.client.api.feature.hud.TextHudElement;
@@ -11,14 +11,14 @@ import java.util.List;
 /**
  * Durability of the held item, with a % sign in percentage mode
  */
-public class AsteraDurabilityHud extends TextHudElement {
+public class CelestialDurabilityHud extends TextHudElement {
 
 	private final BooleanSetting percentage = new BooleanSetting("Percentage", "Show the durability left as a percentage", true);
 	private final BooleanSetting offhand = new BooleanSetting("Offhand", "Use the offhand item instead of the main hand", false);
 
-	public AsteraDurabilityHud() {
-		super("AsteraDurability");
-		this.setDisplayName("Astera Durability");
+	public CelestialDurabilityHud() {
+		super("CelestialDurability");
+		this.setDisplayName("Celestial Durability");
 		this.registerSettings(this.percentage, this.offhand);
 		//follow the theme color like the other HUD elements
 		syncColors(this.getSettings());

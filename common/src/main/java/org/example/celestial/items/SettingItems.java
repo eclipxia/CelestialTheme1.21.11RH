@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.rusherhack.client.api.setting.BindSetting;
 import org.rusherhack.client.api.setting.ColorSetting;
 import org.rusherhack.core.setting.*;
@@ -17,9 +17,9 @@ public final class SettingItems {
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public static AsteraItem create(AsteraPanel panel, AsteraItem parent, Setting<?> setting) {
+	public static CelestialItem create(CelestialPanel panel, CelestialItem parent, Setting<?> setting) {
 		final String name = setting.getDisplayName();
-		final AsteraItem item;
+		final CelestialItem item;
 
 		if(setting instanceof BooleanSetting bool) {
 			item = new ToggleItem(panel, parent, name, bool::getValue, bool::setValue);

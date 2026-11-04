@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.RenderContext;
 
@@ -10,14 +10,14 @@ import java.util.function.Supplier;
 /**
  * Text row: left click to edit, Enter saves, Esc cancels
  */
-public class StringItem extends AsteraItem {
+public class StringItem extends CelestialItem {
 
 	private final String label;
 	private final Supplier<String> getter;
 	private final Consumer<String> setter;
 	private StringBuilder buffer = null;
 
-	public StringItem(AsteraPanel panel, AsteraItem parent, String label, Supplier<String> getter, Consumer<String> setter) {
+	public StringItem(CelestialPanel panel, CelestialItem parent, String label, Supplier<String> getter, Consumer<String> setter) {
 		super(panel, parent);
 		this.label = label;
 		this.getter = getter;

@@ -1,8 +1,8 @@
-package org.example.astera;
+package org.example.celestial;
 
 import net.minecraft.client.Minecraft;
-import org.example.astera.items.ModuleItem;
-import org.example.astera.items.SliderItem;
+import org.example.celestial.items.ModuleItem;
+import org.example.celestial.items.SliderItem;
 import org.rusherhack.client.api.RusherHackAPI;
 import org.rusherhack.client.api.feature.module.IModule;
 import org.rusherhack.client.api.feature.module.Module;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Lays out one panel per module category in a single row, Rusherhack's default order first
  */
-public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
+public class CelestialClickGui extends PanelHandlerBase<CelestialPanel> {
 
 	private static final List<ModuleCategory> ORDER = List.of(
 			ModuleCategory.COMBAT,
@@ -32,13 +32,13 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 			ModuleCategory.EXTERNAL
 	);
 
-	public AsteraClickGui() {
+	public CelestialClickGui() {
 		super(true);
 	}
 
 	@Override
-	public AsteraPanel createPanel(String name) {
-		return new AsteraPanel(this, name);
+	public CelestialPanel createPanel(String name) {
+		return new CelestialPanel(this, name);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 			}
 			modules.sort(Comparator.comparing(m -> m.getDisplayName().toLowerCase()));
 
-			final AsteraPanel panel = new AsteraPanel(this, category.getName());
+			final CelestialPanel panel = new CelestialPanel(this, category.getName());
 			panel.setCategory(category);
 			for(IModule module : modules) {
 				panel.addItem(new ModuleItem(panel, module));
@@ -78,11 +78,11 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 
 	@Override
 	public void setDefaultPositions() {
-		double x = AsteraPanel.MARGIN;
-		for(AsteraPanel panel : this.panels) {
+		double x = CelestialPanel.MARGIN;
+		for(CelestialPanel panel : this.panels) {
 			panel.setX(x);
-			panel.setY(AsteraPanel.MARGIN);
-			x += AsteraPanel.WIDTH + AsteraPanel.GAP;
+			panel.setY(CelestialPanel.MARGIN);
+			x += CelestialPanel.WIDTH + CelestialPanel.GAP;
 		}
 	}
 
@@ -93,9 +93,9 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 	@Override
 	public void render(RenderContext context, double mouseX, double mouseY) {
 		if(!SliderItem.isAnyDragging()) {
-			this.appliedScale = this.fitScale(AsteraPlugin.THEME.scale.getValue());
+			this.appliedScale = this.fitScale(CelestialPlugin.THEME.scale.getValue());
 		}
-		if(AsteraPlugin.THEME.backgroundBlur.getValue()) {
+		if(CelestialPlugin.THEME.backgroundBlur.getValue()) {
 			Compat.blurBackground(context);
 		}
 		super.render(context, mouseX, mouseY);
@@ -103,10 +103,10 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 
 	// caps the scale so the full panel row fits the window width
 	private float fitScale(float wanted) {
-		if(!AsteraPlugin.THEME.autoFit.getValue() || this.panels.isEmpty()) {
+		if(!CelestialPlugin.THEME.autoFit.getValue() || this.panels.isEmpty()) {
 			return wanted;
 		}
-		final double rowWidth = AsteraPanel.MARGIN * 2 + this.panels.size() * (AsteraPanel.WIDTH + AsteraPanel.GAP) - AsteraPanel.GAP;
+		final double rowWidth = CelestialPanel.MARGIN * 2 + this.panels.size() * (CelestialPanel.WIDTH + CelestialPanel.GAP) - CelestialPanel.GAP;
 		final double available = Minecraft.getInstance().getWindow().getGuiScaledWidth() / (double) super.getScale();
 		return (float) Math.min(wanted, available / rowWidth);
 	}
@@ -123,7 +123,7 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 		final boolean building = renderer.isBuilding();
 		if(!building) Compat.beginRenderer(renderer, context, this.getFontRenderer());
 
-		for(AsteraPanel panel : this.panels) {
+		for(CelestialPanel panel : this.panels) {
 			if(!this.isEnabled(panel)) continue;
 			panel.render(context, mouseX, mouseY);
 		}

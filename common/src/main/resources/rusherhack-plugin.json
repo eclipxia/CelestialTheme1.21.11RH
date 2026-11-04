@@ -1,8 +1,8 @@
 {
-  "Plugin-Class": "org.example.astera.AsteraPlugin",
-  "Name": "Astera Theme",
+  "Plugin-Class": "org.example.celestial.CelestialPlugin",
+  "Name": "Celestial Theme",
   "Version": "${plugin_version}",
-  "Description": "ClickGUI theme styled after the Astera client",
+  "Description": "ClickGUI theme styled after the Celestial client",
   "Authors": [
     "Esat32"
   ],

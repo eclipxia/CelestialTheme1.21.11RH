@@ -1,7 +1,7 @@
-package org.example.astera;
+package org.example.celestial;
 
-import org.example.astera.items.AsteraItem;
-import org.example.astera.items.ModuleItem;
+import org.example.celestial.items.CelestialItem;
+import org.example.celestial.items.ModuleItem;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.feature.hud.IHudElement;
 import org.rusherhack.client.api.feature.module.IModule;
@@ -16,9 +16,9 @@ import org.rusherhack.core.feature.IFeature;
 /**
  * Category panel. Left drag header to move, right click header to collapse.
  */
-public class AsteraPanel extends PanelBase<AsteraItem> {
+public class CelestialPanel extends PanelBase<CelestialItem> {
 
-	// sizes in gui units, measured from the Astera screenshot at gui scale 2
+	// sizes in gui units, measured from the Celestial screenshot at gui scale 2
 	public static final double WIDTH = 112;
 	public static final double HEADER_HEIGHT = 12;
 	public static final double ROW_HEIGHT = 13;
@@ -31,7 +31,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 	private boolean dragging = false;
 	private double dragX, dragY;
 
-	public AsteraPanel(PanelHandlerBase<AsteraPanel> handler, String name) {
+	public CelestialPanel(PanelHandlerBase<CelestialPanel> handler, String name) {
 		super(handler, name);
 	}
 
@@ -40,7 +40,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 	}
 
 	@Override
-	public AsteraItem createFeatureItem(IFeature feature) {
+	public CelestialItem createFeatureItem(IFeature feature) {
 		if(feature instanceof IModule module) {
 			return new ModuleItem(this, module);
 		}
@@ -57,7 +57,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 			this.setY(mouseY - this.dragY);
 		}
 
-		final AsteraTheme theme = AsteraPlugin.THEME;
+		final CelestialTheme theme = CelestialPlugin.THEME;
 		final IRenderer2D renderer = this.getRenderer();
 		final IFontRenderer fr = this.getFontRenderer();
 		final double x = this.getX();
@@ -77,13 +77,13 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 
 		//dark body and faint outline
 		renderer.drawRectangle(x + OUTLINE, bodyY, WIDTH - OUTLINE * 2, bodyHeight, theme.bodyFill());
-		final int edge = AsteraTheme.withAlpha(accent, 90);
+		final int edge = CelestialTheme.withAlpha(accent, 90);
 		renderer.drawRectangle(x, bodyY, OUTLINE, bodyHeight + OUTLINE, edge);
 		renderer.drawRectangle(x + WIDTH - OUTLINE, bodyY, OUTLINE, bodyHeight + OUTLINE, edge);
 		renderer.drawRectangle(x + OUTLINE, bodyY + bodyHeight, WIDTH - OUTLINE * 2, OUTLINE, edge);
 
 		double itemY = bodyY;
-		for(AsteraItem item : this.items) {
+		for(CelestialItem item : this.items) {
 			item.setY(itemY);
 			item.render(context, mouseX, mouseY);
 			itemY += item.getHeight(true);
@@ -94,7 +94,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 		if(this.category == null) {
 			return this.getDisplayName();
 		}
-		if(AsteraPlugin.THEME.asteraNames.getValue()) {
+		if(CelestialPlugin.THEME.celestialNames.getValue()) {
 			if(this.category == ModuleCategory.MISC) return "Misc";
 			if(this.category == ModuleCategory.RENDER) return "Visual";
 			if(this.category == ModuleCategory.CLIENT) return "Core";
@@ -104,7 +104,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 
 	private double getContentHeight() {
 		double height = 0;
-		for(AsteraItem item : this.items) {
+		for(CelestialItem item : this.items) {
 			height += item.getHeight(true);
 		}
 		return height;
@@ -143,7 +143,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 		}
 
 		if(this.open) {
-			for(AsteraItem item : this.items) {
+			for(CelestialItem item : this.items) {
 				if(item.mouseClicked(mouseX, mouseY, button)) {
 					return true;
 				}
@@ -159,7 +159,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 		if(button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
 			this.dragging = false;
 		}
-		for(AsteraItem item : this.items) {
+		for(CelestialItem item : this.items) {
 			item.mouseReleased(mouseX, mouseY, button);
 		}
 	}
@@ -170,14 +170,14 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 		if(!this.isHovered(mouseX, mouseY)) {
 			return false;
 		}
-		this.setY(this.getY() + Math.signum(delta) * AsteraPlugin.THEME.scrollSpeed.getValue());
+		this.setY(this.getY() + Math.signum(delta) * CelestialPlugin.THEME.scrollSpeed.getValue());
 		return true;
 	}
 
 	@Override
 	public boolean charTyped(char character) {
 		if(!this.open) return false;
-		for(AsteraItem item : this.items) {
+		for(CelestialItem item : this.items) {
 			if(item.charTyped(character)) {
 				return true;
 			}
@@ -188,7 +188,7 @@ public class AsteraPanel extends PanelBase<AsteraItem> {
 	@Override
 	public boolean keyTyped(int key, int scanCode, int modifiers) {
 		if(!this.open) return false;
-		for(AsteraItem item : this.items) {
+		for(CelestialItem item : this.items) {
 			if(item.keyTyped(key, scanCode, modifiers)) {
 				return true;
 			}

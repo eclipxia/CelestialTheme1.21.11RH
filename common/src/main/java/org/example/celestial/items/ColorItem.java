@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.RenderContext;
@@ -9,12 +9,12 @@ import org.rusherhack.client.api.setting.ColorSetting;
 /**
  * Color row with a swatch. Click to open RGBA sliders, rainbow and theme sync.
  */
-public class ColorItem extends AsteraItem {
+public class ColorItem extends CelestialItem {
 
 	private final String label;
 	private final ColorSetting setting;
 
-	public ColorItem(AsteraPanel panel, AsteraItem parent, String label, ColorSetting setting) {
+	public ColorItem(CelestialPanel panel, CelestialItem parent, String label, ColorSetting setting) {
 		super(panel, parent);
 		this.label = label;
 		this.setting = setting;

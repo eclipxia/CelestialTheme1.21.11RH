@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.RusherHackAPI;
 import org.rusherhack.client.api.bind.IBindManager;
@@ -14,11 +14,11 @@ import org.rusherhack.core.setting.Setting;
 /**
  * Module or HUD element row. Left click toggles, right click shows settings
  */
-public class ModuleItem extends AsteraItem {
+public class ModuleItem extends CelestialItem {
 
 	private final IFeatureConfigurable module;
 
-	public ModuleItem(AsteraPanel panel, IFeatureConfigurable module) {
+	public ModuleItem(CelestialPanel panel, IFeatureConfigurable module) {
 		super(panel, null);
 		this.module = module;
 

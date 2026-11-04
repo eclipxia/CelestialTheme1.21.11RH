@@ -1,9 +1,9 @@
-package org.example.astera;
+package org.example.celestial;
 
 import org.jetbrains.annotations.Nullable;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.setting.ColorSetting;
-import org.example.astera.window.AsteraWindowHandler;
+import org.example.celestial.window.CelestialWindowHandler;
 import org.rusherhack.client.api.ui.hud.HudHandlerBase;
 import org.rusherhack.client.api.ui.panel.PanelHandlerBase;
 import org.rusherhack.client.api.ui.theme.ThemeBase;
@@ -14,10 +14,10 @@ import org.rusherhack.core.setting.NumberSetting;
 import java.awt.*;
 
 /**
- * Astera client look: square panels, thin cyan to magenta gradient headers, dark body,
+ * Celestial client look: square panels, thin cyan to magenta gradient headers, dark body,
  * gradient filled rows for enabled modules and gradient switches and sliders.
  */
-public class AsteraTheme extends ThemeBase {
+public class CelestialTheme extends ThemeBase {
 
 	public final ColorSetting gradientStart = new ColorSetting("GradientStart", new Color(0x40, 0xC9, 0xFF)).setThemeSync(false);
 	public final ColorSetting gradientEnd = new ColorSetting("GradientEnd", new Color(0xE8, 0x1C, 0xFF)).setThemeSync(false);
@@ -31,26 +31,26 @@ public class AsteraTheme extends ThemeBase {
 	public final ColorSetting enabledTextColor = new ColorSetting("EnabledTextColor", new Color(255, 255, 255)).setThemeSync(false);
 	public final ColorSetting headerTextColor = new ColorSetting("HeaderTextColor", new Color(255, 255, 255)).setThemeSync(false);
 	public final ColorSetting valueColor = new ColorSetting("ValueColor", new Color(169, 159, 196)).setThemeSync(false);
-	public final BooleanSetting asteraNames = new BooleanSetting("AsteraNames", "Rename categories to Misc, Visual and Core", false);
+	public final BooleanSetting celestialNames = new BooleanSetting("CelestialNames", "Rename categories to Misc, Visual and Core", false);
 	public final NumberSetting<Float> scrollSpeed = new NumberSetting<>("ScrollSpeed", 15f, 1f, 40f);
 	public final NumberSetting<Float> scale = new NumberSetting<>("Scale", "Size of the whole ClickGUI", 1f, 0.5f, 2f).incremental(0.05);
 	public final BooleanSetting autoFit = new BooleanSetting("AutoFit", "Shrinks the ClickGUI so every panel fits the window width", true);
 	public final BooleanSetting syncHudColors = new BooleanSetting("SyncHudColors", "Switch on to apply once: HUD element colors follow the theme and the client primary color becomes the theme color. Switches itself back off.", false);
-	public final BooleanSetting applyHudLayout = new BooleanSetting("ApplyHudLayout", "Switch on to apply once: enables the Astera preset HUD elements and moves them to their preset positions. Switches itself back off.", false);
+	public final BooleanSetting applyHudLayout = new BooleanSetting("ApplyHudLayout", "Switch on to apply once: enables the Celestial preset HUD elements and moves them to their preset positions. Switches itself back off.", false);
 	public final BooleanSetting backgroundBlur = new BooleanSetting("BackgroundBlur", "Blurs the screen behind the ClickGUI. Strength follows Minecraft's menu background blur video setting.", true);
 	public final BooleanSetting layoutOnLoad = new BooleanSetting("LayoutOnLoad", "Places the preset HUD elements again every time the game starts, so they fit the current window and GUI scale. Moves you made last session are replaced.", true);
-	public final BooleanSetting textShadow = new BooleanSetting("TextShadow", "Astera draws text without shadow", false);
+	public final BooleanSetting textShadow = new BooleanSetting("TextShadow", "Celestial draws text without shadow", false);
 
-	private final AsteraClickGui clickGui;
-	private final AsteraHudHandler hudHandler;
-	private final AsteraWindowHandler windowHandler;
+	private final CelestialClickGui clickGui;
+	private final CelestialHudHandler hudHandler;
+	private final CelestialWindowHandler windowHandler;
 
-	public AsteraTheme() {
-		super("Astera", "Astera client styled ClickGUI", new Color(0x8E, 0x74, 0xFF));
-		this.registerSettings(this.scale, this.autoFit, this.backgroundBlur, this.syncHudColors, this.applyHudLayout, this.layoutOnLoad, this.textShadow, this.gradientStart, this.gradientEnd, this.bodyColor, this.bodyAlpha, this.hudOpacity, this.enabledAlpha, this.optionsAlpha, this.hoverAlpha, this.textColor, this.enabledTextColor, this.headerTextColor, this.valueColor, this.asteraNames, this.scrollSpeed);
-		this.clickGui = new AsteraClickGui();
-		this.hudHandler = new AsteraHudHandler();
-		this.windowHandler = new AsteraWindowHandler();
+	public CelestialTheme() {
+		super("Celestial", "Celestial client styled ClickGUI", new Color(0x8E, 0x74, 0xFF));
+		this.registerSettings(this.scale, this.autoFit, this.backgroundBlur, this.syncHudColors, this.applyHudLayout, this.layoutOnLoad, this.textShadow, this.gradientStart, this.gradientEnd, this.bodyColor, this.bodyAlpha, this.hudOpacity, this.enabledAlpha, this.optionsAlpha, this.hoverAlpha, this.textColor, this.enabledTextColor, this.headerTextColor, this.valueColor, this.celestialNames, this.scrollSpeed);
+		this.clickGui = new CelestialClickGui();
+		this.hudHandler = new CelestialHudHandler();
+		this.windowHandler = new CelestialWindowHandler();
 	}
 
 	@Override

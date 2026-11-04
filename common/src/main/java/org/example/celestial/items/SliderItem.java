@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.RenderContext;
@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 /**
  * Number row: label and value on top, slim gradient bar with a square handle below, left drag to change
  */
-public class SliderItem extends AsteraItem {
+public class SliderItem extends CelestialItem {
 
 	private static SliderItem active = null;
 
@@ -23,7 +23,7 @@ public class SliderItem extends AsteraItem {
 	private final Supplier<String> display;
 	private boolean dragging = false;
 
-	public SliderItem(AsteraPanel panel, AsteraItem parent, String label, double min, double max, DoubleSupplier getter, DoubleConsumer setter, Supplier<String> display) {
+	public SliderItem(CelestialPanel panel, CelestialItem parent, String label, double min, double max, DoubleSupplier getter, DoubleConsumer setter, Supplier<String> display) {
 		super(panel, parent);
 		this.label = label;
 		this.min = min;

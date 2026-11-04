@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.RusherHackAPI;
 import org.rusherhack.client.api.render.RenderContext;
@@ -13,14 +13,14 @@ import java.util.function.Supplier;
 /**
  * Left click to listen, then press a key or mouse button. Esc / Delete / Backspace unbinds.
  */
-public class BindItem extends AsteraItem {
+public class BindItem extends CelestialItem {
 
 	private final String label;
 	private final Supplier<IKey> getter;
 	private final Consumer<IKey> setter;
 	private boolean listening = false;
 
-	public BindItem(AsteraPanel panel, AsteraItem parent, String label, Supplier<IKey> getter, Consumer<IKey> setter) {
+	public BindItem(CelestialPanel panel, CelestialItem parent, String label, Supplier<IKey> getter, Consumer<IKey> setter) {
 		super(panel, parent);
 		this.label = label;
 		this.getter = getter;

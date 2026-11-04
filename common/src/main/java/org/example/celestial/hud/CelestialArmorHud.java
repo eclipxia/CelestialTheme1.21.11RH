@@ -1,8 +1,8 @@
-package org.example.astera.hud;
+package org.example.celestial.hud;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
-import org.example.astera.Compat;
+import org.example.celestial.Compat;
 import org.rusherhack.client.api.feature.hud.HudElement;
 import org.rusherhack.client.api.render.RenderContext;
 import org.rusherhack.client.api.render.font.IFontRenderer;
@@ -14,7 +14,7 @@ import java.awt.Color;
 /**
  * Worn armor with the durability under each piece, shown as a value or with a % sign in percent mode
  */
-public class AsteraArmorHud extends HudElement {
+public class CelestialArmorHud extends HudElement {
 
 	public enum DurabilityMode {
 		OFF, VALUE, PERCENT
@@ -33,9 +33,9 @@ public class AsteraArmorHud extends HudElement {
 
 	private final ColorSetting color = new ColorSetting("Color", new Color(255, 255, 255)).setThemeSync(true).setAlphaAllowed(false);
 
-	public AsteraArmorHud() {
-		super("AsteraArmor");
-		this.setDisplayName("Astera Armor");
+	public CelestialArmorHud() {
+		super("CelestialArmor");
+		this.setDisplayName("Celestial Armor");
 		this.registerSettings(this.durability, this.axis, this.color);
 	}
 

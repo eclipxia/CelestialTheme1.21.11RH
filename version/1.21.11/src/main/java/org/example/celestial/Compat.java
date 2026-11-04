@@ -1,4 +1,4 @@
-package org.example.astera;
+package org.example.celestial;
 
 import net.minecraft.world.item.ItemStack;
 import org.rusherhack.client.api.render.IRenderer2D;

@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.RenderContext;
 
@@ -9,13 +9,13 @@ import java.util.function.Supplier;
 /**
  * Enum / mode row: left click next, right click previous (or open sub settings)
  */
-public class OptionItem extends AsteraItem {
+public class OptionItem extends CelestialItem {
 
 	private final String label;
 	private final Supplier<String> display;
 	private final Runnable next, previous;
 
-	public OptionItem(AsteraPanel panel, AsteraItem parent, String label, Supplier<String> display, Runnable next, Runnable previous) {
+	public OptionItem(CelestialPanel panel, CelestialItem parent, String label, Supplier<String> display, Runnable next, Runnable previous) {
 		super(panel, parent);
 		this.label = label;
 		this.display = display;

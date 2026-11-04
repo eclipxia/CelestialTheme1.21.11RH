@@ -8,7 +8,7 @@ pluginManagement {
 	}
 }
 
-rootProject.name = 'astera-theme'
+rootProject.name = 'celestial-theme'
 
 //one project per supported minecraft version, shared code lives in common/
 include 'version:1.21.4', 'version:1.21.11', 'version:26.2'

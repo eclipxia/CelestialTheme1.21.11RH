@@ -1,4 +1,4 @@
-package org.example.astera;
+package org.example.celestial;
 
 import org.rusherhack.client.api.RusherHackAPI;
 import org.rusherhack.client.api.feature.hud.HudElement;
@@ -13,15 +13,15 @@ import java.util.List;
 /**
  * The panel shown in the HUD editor. Lists every HUD element with its settings, same look as the ClickGUI.
  */
-public class AsteraHudManager extends PanelHandlerBase<AsteraPanel> {
+public class CelestialHudManager extends PanelHandlerBase<CelestialPanel> {
 
-	public AsteraHudManager() {
+	public CelestialHudManager() {
 		super(true);
 	}
 
 	@Override
-	public AsteraPanel createPanel(String name) {
-		return new AsteraPanel(this, name);
+	public CelestialPanel createPanel(String name) {
+		return new CelestialPanel(this, name);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class AsteraHudManager extends PanelHandlerBase<AsteraPanel> {
 		}
 		elements.sort(Comparator.comparing(e -> e.getDisplayName().toLowerCase()));
 
-		final AsteraPanel panel = this.createPanel("HUD");
+		final CelestialPanel panel = this.createPanel("HUD");
 		for(HudElement element : elements) {
 			panel.addItem(element);
 		}
@@ -44,9 +44,9 @@ public class AsteraHudManager extends PanelHandlerBase<AsteraPanel> {
 
 	@Override
 	public void setDefaultPositions() {
-		for(AsteraPanel panel : this.panels) {
-			panel.setX(AsteraPanel.MARGIN);
-			panel.setY(AsteraPanel.MARGIN);
+		for(CelestialPanel panel : this.panels) {
+			panel.setX(CelestialPanel.MARGIN);
+			panel.setY(CelestialPanel.MARGIN);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class AsteraHudManager extends PanelHandlerBase<AsteraPanel> {
 		final boolean building = renderer.isBuilding();
 		if(!building) Compat.beginRenderer(renderer, context, this.getFontRenderer());
 
-		for(AsteraPanel panel : this.panels) {
+		for(CelestialPanel panel : this.panels) {
 			if(!this.isEnabled(panel)) continue;
 			panel.render(context, mouseX, mouseY);
 		}

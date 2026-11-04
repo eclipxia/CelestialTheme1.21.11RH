@@ -1,6 +1,6 @@
-package org.example.astera.items;
+package org.example.celestial.items;
 
-import org.example.astera.AsteraPanel;
+import org.example.celestial.CelestialPanel;
 import org.lwjgl.glfw.GLFW;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.RenderContext;
@@ -11,13 +11,13 @@ import java.util.function.Consumer;
 /**
  * Boolean row with a square switch on the right, filled with the gradient when on
  */
-public class ToggleItem extends AsteraItem {
+public class ToggleItem extends CelestialItem {
 
 	private final String label;
 	private final BooleanSupplier getter;
 	private final Consumer<Boolean> setter;
 
-	public ToggleItem(AsteraPanel panel, AsteraItem parent, String label, BooleanSupplier getter, Consumer<Boolean> setter) {
+	public ToggleItem(CelestialPanel panel, CelestialItem parent, String label, BooleanSupplier getter, Consumer<Boolean> setter) {
 		super(panel, parent);
 		this.label = label;
 		this.getter = getter;

@@ -1,7 +1,7 @@
-package org.example.astera.window;
+package org.example.celestial.window;
 
-import org.example.astera.AsteraPlugin;
-import org.example.astera.AsteraTheme;
+import org.example.celestial.CelestialPlugin;
+import org.example.celestial.CelestialTheme;
 import org.rusherhack.client.api.feature.window.Window;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.font.IFontRenderer;
@@ -10,16 +10,16 @@ import org.rusherhack.client.api.ui.window.WindowHandlerBase;
 import org.rusherhack.client.api.ui.window.WindowViewHandlerBase;
 
 /**
- * Astera look for windows: square dark frame, thin gradient title bar
+ * Celestial look for windows: square dark frame, thin gradient title bar
  */
-public class AsteraWindowHandler extends WindowHandlerBase {
+public class CelestialWindowHandler extends WindowHandlerBase {
 
 	public static final int TITLE_HEIGHT = 12;
 	public static final int BORDER = 2;
 
 	private final WindowViewHandlerBase viewHandler = new WindowViewHandlerBase(this) {
 	};
-	private final AsteraWindowContentHandler contentHandler = new AsteraWindowContentHandler();
+	private final CelestialWindowContentHandler contentHandler = new CelestialWindowContentHandler();
 
 	@Override
 	public WindowViewHandlerBase getViewHandler() {
@@ -33,7 +33,7 @@ public class AsteraWindowHandler extends WindowHandlerBase {
 
 	@Override
 	public void renderWindowFrame(Window window, double mouseX, double mouseY) {
-		final AsteraTheme theme = AsteraPlugin.THEME;
+		final CelestialTheme theme = CelestialPlugin.THEME;
 		final IRenderer2D renderer = this.getRenderer();
 		final IFontRenderer fr = this.getFontRenderer();
 		final double x = window.getX();
@@ -43,7 +43,7 @@ public class AsteraWindowHandler extends WindowHandlerBase {
 
 		//body and faint outline
 		renderer.drawRectangle(x, y, w, h, theme.bodyFill());
-		final int edge = AsteraTheme.withAlpha(theme.accent(), 90);
+		final int edge = CelestialTheme.withAlpha(theme.accent(), 90);
 		renderer.drawRectangle(x, y + TITLE_HEIGHT, 1, h - TITLE_HEIGHT, edge);
 		renderer.drawRectangle(x + w - 1, y + TITLE_HEIGHT, 1, h - TITLE_HEIGHT, edge);
 		renderer.drawRectangle(x, y + h - 1, w, 1, edge);

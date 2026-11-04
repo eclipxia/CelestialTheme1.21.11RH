@@ -1,4 +1,4 @@
-package org.example.astera;
+package org.example.celestial;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -18,15 +18,15 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 /**
- * Astera look for HUD elements: translucent gradient background
+ * Celestial look for HUD elements: translucent gradient background
  */
-public class AsteraHudHandler extends HudHandlerBase {
+public class CelestialHudHandler extends HudHandlerBase {
 
 	private static final Logger LOGGER = LogUtils.getLogger();
 
-	private final AsteraHudManager manager = new AsteraHudManager();
+	private final CelestialHudManager manager = new CelestialHudManager();
 
-	public AsteraHudHandler() {
+	public CelestialHudHandler() {
 		super(true);
 	}
 
@@ -35,11 +35,11 @@ public class AsteraHudHandler extends HudHandlerBase {
 	public void tick() {
 		super.tick();
 
-		final AsteraTheme theme = AsteraPlugin.THEME;
+		final CelestialTheme theme = CelestialPlugin.THEME;
 		if(theme.layoutOnLoad.getValue() && !this.layoutApplied && Minecraft.getInstance().getWindow() != null) {
 			this.layoutApplied = true;
 			this.applyHudLayout();
-			LOGGER.info("[Astera] applied preset HUD layout");
+			LOGGER.info("[Celestial] applied preset HUD layout");
 		}
 		if(theme.syncHudColors.getValue()) {
 			theme.syncHudColors.setValue(false);
@@ -52,7 +52,7 @@ public class AsteraHudHandler extends HudHandlerBase {
 	}
 
 	private void applyHudColors() {
-		RusherHackAPI.colors().primaryColor().setValue(AsteraPlugin.THEME.getPrimaryColor());
+		RusherHackAPI.colors().primaryColor().setValue(CelestialPlugin.THEME.getPrimaryColor());
 		for(HudElement element : RusherHackAPI.getHudManager().getFeatures()) {
 			syncColors(element.getSettings());
 		}
@@ -98,18 +98,18 @@ public class AsteraHudHandler extends HudHandlerBase {
 		final double center = w / 2;
 		this.place("PlayerView", bottomLeft, center - 142, h);
 		//armor on the right half above the hunger bar
-		this.place("AsteraArmor", bottomLeft, center + 11, h - 40);
+		this.place("CelestialArmor", bottomLeft, center + 11, h - 40);
 		//durability and speed on the left above minecraft's own armor bar, which sits over the health bar
-		this.place("AsteraDurability", bottomLeft, center - 91, h - 62);
+		this.place("CelestialDurability", bottomLeft, center - 91, h - 62);
 		this.place("Speed", bottomLeft, center - 91, h - 62 - STACK);
-		//the Astera versions show a % sign in percent mode, so they replace the built in ones
+		//the Celestial versions show a % sign in percent mode, so they replace the built in ones
 		this.disable("Durability");
 		this.disable("Armor");
-		//the Astera layout has no watermark
+		//the Celestial layout has no watermark
 		this.disable("Watermark");
 		//saved settings override the elements' defaults, so make their text follow the theme color here
 		for(HudElement element : RusherHackAPI.getHudManager().getFeatures()) {
-			if(element.getName().equals("AsteraDurability") || element.getName().equals("AsteraArmor")) {
+			if(element.getName().equals("CelestialDurability") || element.getName().equals("CelestialArmor")) {
 				syncColors(element.getSettings());
 			}
 		}
@@ -127,7 +127,7 @@ public class AsteraHudHandler extends HudHandlerBase {
 			field.setAccessible(true);
 			field.set(element, HudElement.calculateAlignment(element));
 		} catch(ReflectiveOperationException | RuntimeException e) {
-			LOGGER.warn("[Astera] could not set alignment of {}", element.getName(), e);
+			LOGGER.warn("[Celestial] could not set alignment of {}", element.getName(), e);
 		}
 	}
 
@@ -155,16 +155,16 @@ public class AsteraHudHandler extends HudHandlerBase {
 
 	@Override
 	protected Color getBackgroundColor(HudElement hudElement, double mouseX, double mouseY) {
-		return new Color(AsteraPlugin.THEME.bodyFill(), true);
+		return new Color(CelestialPlugin.THEME.bodyFill(), true);
 	}
 
 	@Override
 	protected void renderHudElementBackground(HudElement hudElement, RenderContext renderContext, IRenderer2D renderer, double width, double height, int color) {
-		AsteraPlugin.THEME.fillGradient(renderer, 0, 0, width, height, AsteraPlugin.THEME.hudOpacity.getValue());
+		CelestialPlugin.THEME.fillGradient(renderer, 0, 0, width, height, CelestialPlugin.THEME.hudOpacity.getValue());
 	}
 
 	/**
-	 * The HUD editor's element list, drawn in the Astera style
+	 * The HUD editor's element list, drawn in the Celestial style
 	 */
 	@Override
 	public PanelHandlerBase<?> getHudManagerPanel() {

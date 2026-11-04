@@ -1,7 +1,7 @@
-package org.example.astera.window;
+package org.example.celestial.window;
 
-import org.example.astera.AsteraPlugin;
-import org.example.astera.AsteraTheme;
+import org.example.celestial.CelestialPlugin;
+import org.example.celestial.CelestialTheme;
 import org.rusherhack.client.api.render.IRenderer2D;
 import org.rusherhack.client.api.render.font.IFontRenderer;
 import org.rusherhack.client.api.ui.window.WindowContentHandlerBase;
@@ -17,15 +17,15 @@ import org.rusherhack.client.api.ui.window.view.WindowView;
 import java.util.List;
 
 /**
- * Window controls in the Astera style: square, dark fields, gradient for active and selected states
+ * Window controls in the Celestial style: square, dark fields, gradient for active and selected states
  */
-public class AsteraWindowContentHandler extends WindowContentHandlerBase {
+public class CelestialWindowContentHandler extends WindowContentHandlerBase {
 
 	private static final int FIELD = 0xFF2C2142;
 	private static final int FIELD_HOVER = 0xFF35294D;
 
-	private AsteraTheme theme() {
-		return AsteraPlugin.THEME;
+	private CelestialTheme theme() {
+		return CelestialPlugin.THEME;
 	}
 
 	private void centeredText(IFontRenderer fr, String text, double x, double y, double w, double h, int color) {
