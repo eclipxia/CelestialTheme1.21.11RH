@@ -118,3 +118,10 @@ run/
 !gradle-wrapper.jar
 
 lib/
+
+# per-version dev client data
+version/*/run/
+version/*/bin/
+.classpath
+.project
+.settings/

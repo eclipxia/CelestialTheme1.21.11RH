@@ -1,12 +1,12 @@
 {
   "Plugin-Class": "org.example.astera.AsteraPlugin",
   "Name": "Astera Theme",
-  "Version": "${project.plugin_version}",
+  "Version": "${plugin_version}",
   "Description": "ClickGUI theme styled after the Astera client",
   "Authors": [
     "Esat32"
   ],
   "Minecraft-Versions": [
-    "${project.minecraft_version}"
+    "${minecraft_version}"
   ]
 }

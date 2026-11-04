@@ -96,11 +96,7 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 			this.appliedScale = this.fitScale(AsteraPlugin.THEME.scale.getValue());
 		}
 		if(AsteraPlugin.THEME.backgroundBlur.getValue()) {
-			try {
-				context.graphics().blurBeforeThisStratum();
-			} catch(IllegalStateException ignored) {
-				//already blurred this frame
-			}
+			Compat.blurBackground(context);
 		}
 		super.render(context, mouseX, mouseY);
 	}
@@ -125,7 +121,7 @@ public class AsteraClickGui extends PanelHandlerBase<AsteraPanel> {
 	public void renderElements(RenderContext context, double mouseX, double mouseY) {
 		final IRenderer2D renderer = this.getRenderer();
 		final boolean building = renderer.isBuilding();
-		if(!building) renderer.begin(context.graphics(), this.getFontRenderer());
+		if(!building) Compat.beginRenderer(renderer, context, this.getFontRenderer());
 
 		for(AsteraPanel panel : this.panels) {
 			if(!this.isEnabled(panel)) continue;

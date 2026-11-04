@@ -55,7 +55,7 @@ public class AsteraHudManager extends PanelHandlerBase<AsteraPanel> {
 	public void renderElements(RenderContext context, double mouseX, double mouseY) {
 		final IRenderer2D renderer = this.getRenderer();
 		final boolean building = renderer.isBuilding();
-		if(!building) renderer.begin(context.graphics(), this.getFontRenderer());
+		if(!building) Compat.beginRenderer(renderer, context, this.getFontRenderer());
 
 		for(AsteraPanel panel : this.panels) {
 			if(!this.isEnabled(panel)) continue;

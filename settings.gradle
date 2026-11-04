@@ -1,9 +1,14 @@
 pluginManagement {
-    repositories {
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
-        gradlePluginPortal()
-    }
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		gradlePluginPortal()
+	}
 }
+
+rootProject.name = 'astera-theme'
+
+//one project per supported minecraft version, shared code lives in common/
+include 'version:1.21.4', 'version:1.21.11', 'version:26.2'

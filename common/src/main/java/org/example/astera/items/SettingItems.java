@@ -30,7 +30,7 @@ public final class SettingItems {
 		} else if(setting instanceof EnumSetting<?> enumSetting) {
 			item = new OptionItem(panel, parent, name, enumSetting::getDisplayValue, enumSetting::increment, enumSetting::decrement);
 		} else if(setting instanceof OptionSetting option) {
-			item = new OptionItem(panel, parent, name, option::getDisplayValue, () -> cycle(option, option.getOptions(), 1), () -> cycle(option, option.getOptions(), -1));
+			item = new OptionItem(panel, parent, name, option::getDisplayValue, () -> cycle((Setting) option, new ArrayList<>(option.getOptions()), 1), () -> cycle((Setting) option, new ArrayList<>(option.getOptions()), -1));
 		} else if(setting instanceof StringSetting string) {
 			if(string.getOptions().isEmpty()) {
 				item = new StringItem(panel, parent, name, string::getValue, string::setValue);

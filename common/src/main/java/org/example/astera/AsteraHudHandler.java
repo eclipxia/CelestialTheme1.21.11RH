@@ -105,6 +105,8 @@ public class AsteraHudHandler extends HudHandlerBase {
 		//the Astera versions show a % sign in percent mode, so they replace the built in ones
 		this.disable("Durability");
 		this.disable("Armor");
+		//the Astera layout has no watermark
+		this.disable("Watermark");
 		//saved settings override the elements' defaults, so make their text follow the theme color here
 		for(HudElement element : RusherHackAPI.getHudManager().getFeatures()) {
 			if(element.getName().equals("AsteraDurability") || element.getName().equals("AsteraArmor")) {

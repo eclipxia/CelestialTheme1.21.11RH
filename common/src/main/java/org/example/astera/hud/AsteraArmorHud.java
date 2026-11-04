@@ -2,6 +2,7 @@ package org.example.astera.hud;
 
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import org.example.astera.Compat;
 import org.rusherhack.client.api.feature.hud.HudElement;
 import org.rusherhack.client.api.render.RenderContext;
 import org.rusherhack.client.api.render.font.IFontRenderer;
@@ -74,7 +75,7 @@ public class AsteraArmorHud extends HudElement {
 			}
 
 			final double iconX = x + (slotWidth - ICON) / 2;
-			context.graphics().renderItem(stack, (int) iconX, (int) (y + PAD));
+			Compat.drawItem(context, stack, (int) iconX, (int) (y + PAD));
 
 			if(this.showText() && stack.isDamageableItem()) {
 				final String text = this.durabilityText(stack);
