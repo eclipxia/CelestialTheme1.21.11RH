@@ -55,8 +55,10 @@ public class CelestialClickGui extends PanelHandlerBase<CelestialPanel> {
 		for(ModuleCategory category : categories) {
 			final List<IModule> modules = new ArrayList<>();
 			for(IModule module : RusherHackAPI.getModuleManager().getFeatures()) {
-				if(module.getCategory() != category) continue;
 				if(module instanceof Module m && m.isHidden()) continue;
+				//like stock RusherHack, every module that comes from a plugin lives in External
+				final boolean external = isExternal(module);
+				if(category == ModuleCategory.EXTERNAL ? !external : (external || module.getCategory() != category)) continue;
 				modules.add(module);
 			}
 			//External is for modules from other plugins, keep its tab even when nothing is loaded
@@ -74,6 +76,13 @@ public class CelestialClickGui extends PanelHandlerBase<CelestialPanel> {
 		}
 
 		this.setDefaultPositions();
+	}
+
+	/**
+	 * The API does not mark plugin modules, so treat everything that is not part of RusherHack itself as external
+	 */
+	private static boolean isExternal(IModule module) {
+		return module.getCategory() == ModuleCategory.EXTERNAL || !module.getClass().getName().startsWith("org.rusherhack.");
 	}
 
 	@Override
