@@ -9,12 +9,12 @@ import org.rusherhack.core.setting.Setting;
 import java.util.List;
 
 /**
- * Durability of the held item, with a % sign in percentage mode
+ * Durability of the held item (and optionally the offhand item), with a % sign in percentage mode
  */
 public class CelestialDurabilityHud extends TextHudElement {
 
 	private final BooleanSetting percentage = new BooleanSetting("Percentage", "Show the durability left as a percentage", true);
-	private final BooleanSetting offhand = new BooleanSetting("Offhand", "Use the offhand item instead of the main hand", false);
+	private final BooleanSetting offhand = new BooleanSetting("Offhand", "Also show the durability of the offhand item next to the main hand", false);
 
 	public CelestialDurabilityHud() {
 		super("CelestialDurability");
@@ -43,9 +43,21 @@ public class CelestialDurabilityHud extends TextHudElement {
 		if(mc.player == null) {
 			return "N/A";
 		}
-		final ItemStack stack = this.offhand.getValue() ? mc.player.getOffhandItem() : mc.player.getMainHandItem();
+		final String main = this.durability(mc.player.getMainHandItem());
+		if(!this.offhand.getValue()) {
+			return main != null ? main : "N/A";
+		}
+		final String off = this.durability(mc.player.getOffhandItem());
+		if(main != null && off != null) {
+			return main + " | " + off;
+		}
+		return main != null ? main : off != null ? off : "N/A";
+	}
+
+	// null when the item has no durability
+	private String durability(ItemStack stack) {
 		if(stack.isEmpty() || !stack.isDamageableItem()) {
-			return "N/A";
+			return null;
 		}
 		final int max = stack.getMaxDamage();
 		final int left = max - stack.getDamageValue();
