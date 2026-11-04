@@ -32,7 +32,7 @@ A clean, Celestial client style **ClickGUI theme** for RusherHack. Periwinkle ca
 ## Installation
 
 1. Add the JVM flag `-Drusherhack.enablePlugins=true` to your Minecraft JVM arguments.
-2. Download the jar for your Minecraft version (`celestial-theme-1.0.0+mc<version>.jar`) from the [Releases](https://github.com/eclipxia/CelestialTheme1.21.11RH/releases) page.
+2. Download the jar for your Minecraft version (`celestial-theme-1.0.1+mc<version>.jar`) from the [Releases](https://github.com/eclipxia/CelestialTheme1.21.11RH/releases) page.
 3. Put it in `.minecraft/rusherhack/plugins/`.
 4. Launch the game and check that it loaded with `*plugins`.
 5. Open the ClickGUI, go to **Core → Theme** and pick **Celestial**.
@@ -73,7 +73,7 @@ Requires JDK 25 (needed by Loom; the 1.21.x modules still target Java 21).
 ./gradlew build-1.21.11     # a single version (also build-1.21.4, build-26.2)
 ```
 
-Jars are written to `build/libs/celestial-theme-1.0.0+mc<version>.jar`.
+Jars are written to `build/libs/celestial-theme-1.0.1+mc<version>.jar`.
 
 ## Project layout
 
