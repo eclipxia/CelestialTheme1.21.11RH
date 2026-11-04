@@ -17,11 +17,6 @@ public class ToggleItem extends CelestialItem {
 	private final BooleanSupplier getter;
 	private final Consumer<Boolean> setter;
 
-	// one-shot settings (like the HUD sync/layout buttons) switch themselves back off right away,
-	// so keep the switch lit for a moment after turning it on to show that the click registered
-	private static final long FLASH_MS = 500;
-	private long flashUntil = 0;
-
 	public ToggleItem(CelestialPanel panel, CelestialItem parent, String label, BooleanSupplier getter, Consumer<Boolean> setter) {
 		super(panel, parent);
 		this.label = label;
@@ -31,7 +26,7 @@ public class ToggleItem extends CelestialItem {
 
 	@Override
 	protected void renderRow(RenderContext context, double mouseX, double mouseY) {
-		final boolean on = this.getter.getAsBoolean() || System.currentTimeMillis() < this.flashUntil;
+		final boolean on = this.getter.getAsBoolean();
 		this.renderHover(mouseX, mouseY);
 		this.drawLabel(this.label, this.theme().textColor.getValueRGB());
 
@@ -51,9 +46,7 @@ public class ToggleItem extends CelestialItem {
 	@Override
 	protected boolean onClick(double mouseX, double mouseY, int button) {
 		if(button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
-			final boolean next = !this.getter.getAsBoolean();
-			this.setter.accept(next);
-			this.flashUntil = next ? System.currentTimeMillis() + FLASH_MS : 0;
+			this.setter.accept(!this.getter.getAsBoolean());
 			return true;
 		}
 		return super.onClick(mouseX, mouseY, button);

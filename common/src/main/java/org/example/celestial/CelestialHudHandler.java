@@ -30,7 +30,6 @@ public class CelestialHudHandler extends HudHandlerBase {
 		super(true);
 	}
 
-	// the sync and layout settings act as buttons: apply once, then switch themselves back off
 	@Override
 	public void tick() {
 		super.tick();
@@ -41,15 +40,29 @@ public class CelestialHudHandler extends HudHandlerBase {
 			this.applyHudLayout();
 			LOGGER.info("[Celestial] applied preset HUD layout");
 		}
-		if(theme.syncHudColors.getValue()) {
-			theme.syncHudColors.setValue(false);
+		// these are real toggles that stay on, the action runs when they are switched on
+		// the first tick only records the saved state, so a toggle saved as on doesn't re-run its action every launch
+		final boolean sync = theme.syncHudColors.getValue();
+		final boolean layout = theme.applyHudLayout.getValue();
+		if(!this.stateRead) {
+			this.stateRead = true;
+			this.syncWasOn = sync;
+			this.layoutWasOn = layout;
+		}
+		if(sync && !this.syncWasOn) {
 			this.applyHudColors();
 		}
-		if(theme.applyHudLayout.getValue()) {
-			theme.applyHudLayout.setValue(false);
+		this.syncWasOn = sync;
+
+		if(layout && !this.layoutWasOn) {
 			this.applyHudLayout();
 		}
+		this.layoutWasOn = layout;
 	}
+
+	private boolean stateRead = false;
+	private boolean syncWasOn = false;
+	private boolean layoutWasOn = false;
 
 	private void applyHudColors() {
 		RusherHackAPI.colors().primaryColor().setValue(CelestialPlugin.THEME.getPrimaryColor());

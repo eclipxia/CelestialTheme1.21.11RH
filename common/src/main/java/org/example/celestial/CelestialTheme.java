@@ -35,8 +35,8 @@ public class CelestialTheme extends ThemeBase {
 	public final NumberSetting<Float> scrollSpeed = new NumberSetting<>("ScrollSpeed", 15f, 1f, 40f);
 	public final NumberSetting<Float> scale = new NumberSetting<>("Scale", "Size of the whole ClickGUI", 1f, 0.5f, 2f).incremental(0.05);
 	public final BooleanSetting autoFit = new BooleanSetting("AutoFit", "Shrinks the ClickGUI so every panel fits the window width", true);
-	public final BooleanSetting syncHudColors = new BooleanSetting("SyncHudColors", "Switch on to apply once: HUD element colors follow the theme and the client primary color becomes the theme color. Switches itself back off.", false);
-	public final BooleanSetting applyHudLayout = new BooleanSetting("ApplyHudLayout", "Switch on to apply once: enables the Celestial preset HUD elements and moves them to their preset positions. Switches itself back off.", false);
+	public final BooleanSetting syncHudColors = new BooleanSetting("SyncHudColors", "Applies when switched on: HUD element colors follow the theme and the client primary color becomes the theme color. Switch off and on to apply again.", false);
+	public final BooleanSetting applyHudLayout = new BooleanSetting("ApplyHudLayout", "Applies when switched on: enables the Celestial preset HUD elements and moves them to their preset positions. Switch off and on to apply again.", false);
 	public final BooleanSetting backgroundBlur = new BooleanSetting("BackgroundBlur", "Blurs the screen behind the ClickGUI. Strength follows Minecraft's menu background blur video setting.", true);
 	public final BooleanSetting layoutOnLoad = new BooleanSetting("LayoutOnLoad", "Places the preset HUD elements again every time the game starts, so they fit the current window and GUI scale. Moves you made last session are replaced.", true);
 	public final BooleanSetting textShadow = new BooleanSetting("TextShadow", "Celestial draws text without shadow", false);
